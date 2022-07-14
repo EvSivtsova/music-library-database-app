@@ -24,19 +24,26 @@ Your response might return plain text, JSON, or HTML code.
 _Replace the below with your own design. Think of all the different possible responses your route will return._
 
 ```
-Response (200 OK):
-Doolittle
-Surfer Rosa
-Waterloo
-Super Trouper
-Bossanova
-Lover
-Folklore
-I Put a Spell on You
-Baltimore
-Here Comes the Sun
-Fodder on My Wings
-Ring Ring
+<!-- GET /albums -->
+
+<html>
+  <head></head>
+  <body>
+    <h1>Albums</h1>
+
+    <div>
+      Title: Doolittle
+      Released: 1989
+    </div>
+
+    <div>
+      Title: Surfer Rosa
+      Released: 1988
+    </div>
+
+    <!-- ... -->
+  </body>
+</html>
 
 ```
 
@@ -52,19 +59,16 @@ GET /albums/
 # Expected response:
 
 Response (200 OK):
-Doolittle
-Surfer Rosa
-Waterloo
-Super Trouper
-Bossanova
-Lover
-Folklore
-I Put a Spell on You
-Baltimore
-Here Comes the Sun
-Fodder on My Wings
-Ring Ring
 
+    <h1>Albums</h1>
+    <div>
+      Title: Doolittle
+      Released: 1989
+    </div>
+    <div>
+      Title: Surfer Rosa
+      Released: 1988
+    </div>
 ```
 
 
@@ -82,10 +86,12 @@ describe Application do
   let(:app) { Application.new }
 
   context "GET /albums" do
-    it 'returns 200 OK and all album separated with commas' do
+    it 'returns 200 OK and lists all albums with their release year' do
       response = get('/albums')
       expect(response.status).to eq(200)
-      expect(response.body).to eq('Doolittle, Surfer Rosa, Waterloo, Super Trouper, Bossanova, Lover, Folklore, I Put a Spell on You, Baltimore, Here Comes the Sun, Fodder on My Wings, Ring Ring')
+      expect(response.body).to include('<h1>Albums</h1>')
+      expect(response.body).to include('<div>', 'Title: Doolittle', 'Released: 1989', '</div>')
+      expect(response.body).to include('<div>', 'Title: Surfer Rosa', 'Released: 1988', '</div>')
     end
   end
 end
