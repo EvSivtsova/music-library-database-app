@@ -1,18 +1,18 @@
-# GET /arists Route Design Recipe
+# GET /artists/:id Route Design Recipe
 
 _Copy this design recipe template to test-drive a Sinatra route._
 
 ## 1. Design the Route Signature
 
 You'll need to include:
-  * the HTTP method
+  * the HTTP method 
   * the path
   * any query parameters (passed in the URL)
   * or body parameters (passed in the request body)
 
   Method: GET
-  Path: /artists
-  Query parameter: :id
+  Path: /artists/:id
+  Parameter: id
 
 ## 2. Design the Response
 
@@ -24,25 +24,28 @@ Your response might return plain text, JSON, or HTML code.
 
 _Replace the below with your own design. Think of all the different possible responses your route will return._
 
-```
-Response (200 OK):
-
-<!-- GET /artists -->
+```html
+<!-- Example for GET /artists/1 -->
 
 <html>
   <head></head>
   <body>
-    <h1>Artists</h1>
+    <h1>Pixies</h1>
+    <p>
+      Genre: Rock
+    </p>
+  </body>
+</html>
 
-    <div>
-      <a href='/artists/1'>Pixies</a>
-    </div>
+<!-- Example for GET /artists/2 -->
 
-    <div>
-      <a href='/artists/2'>ABBA</a>
-    </div>
-
-    <!-- ... -->
+<html>
+  <head></head>
+  <body>
+    <h1>ABBA</h1>
+    <p>
+      Genre: Pop
+    </p>
   </body>
 </html>
 
@@ -55,20 +58,24 @@ _Replace these with your own design._
 ```
 # Request:
 
-GET /artists
+GET /artists/1
 
 # Expected response:
 
 Response (200 OK):
-   <h1>Artists</h1>
+<h1>Pixies</h1>
+    <p>Genre: Rock</p>
+    
+# Request:
 
-    <div>
-      <a href='/artists/1'>Pixies</a>
-    </div>
+GET /artists/2
 
-    <div>
-      <a href='/artists/2'>ABBA</a>
-    </div>
+# Expected response:
+
+Response (200 OK):
+    <h1>ABBA</h1>
+    <p>Genre: Pop</p>
+
 ```
 
 
@@ -85,14 +92,19 @@ describe Application do
 
   let(:app) { Application.new }
 
-  context "GET /artists" do
-    it 'returns 200 OK and lists all artists linking the names to individual artist pages' do
-      response = get('/artists')
+  context "GET /artists/:id" do
+    it 'returns the first artist when id = 1' do
+      response = get('/artists/1')
       expect(response.status).to eq(200)
-      expect(response.body).to include("<h1>Artists</h1>")
-      expect(response.body).to include("<div>", "</div>")
-      expect(response.body).to include("<a href='/artists/1'>Pixies</a>")
-      expect(response.body).to include("<a href='/artists/2'>ABBA</a>")
+      expect(response.body).to include('<h1>Pixies</h1>')
+      expect(response.body).to include('<p>Genre: Rock</p>')
+    end
+
+    it 'returns the second artist when id = 2' do
+      response = get('/artists/2')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>ABBA</h1>')
+      expect(response.body).to include('<p>Genre: Pop</p>')
     end
   end
 end

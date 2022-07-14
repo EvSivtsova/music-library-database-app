@@ -65,11 +65,14 @@ describe Application do
   end
 
   context "GET /artists" do
-    it 'returns 200 OK and all artist separated with commas' do
+    it 'returns 200 OK and lists all artists linking the names to individual artist pages' do
       response = get('/artists')
-      response_body = "Pixies, ABBA, Taylor Swift, Nina Simone"
       expect(response.status).to eq(200)
-      expect(response.body).to eq(response_body)
+      expect(response.body).to include("<h1>Artists</h1>")
+      expect(response.body).to include("<div>", "</div>")
+      expect(response.body).to include("<a href='/artists/1'>Pixies</a>")
+                                      "<a href='artists/1'>Pixies</a>"
+      expect(response.body).to include("<a href='/artists/2'>ABBA</a>")
     end
   end
 
@@ -84,8 +87,24 @@ describe Application do
       expect(response.body).to eq("")
       response = get('/artists')
       expect(response.body).to include('Wild nothing')
-      response_body = 'Pixies, ABBA, Taylor Swift, Nina Simone, Wild nothing'
-      expect(response.body).to eq(response_body)
+      # response_body = 'Pixies, ABBA, Taylor Swift, Nina Simone, Wild nothing'
+      # expect(response.body).to eq(response_body)
+    end
+  end
+
+  context "GET /artists/:id" do
+    it 'returns the first artist when id = 1' do
+      response = get('/artists/1')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Pixies</h1>')
+      expect(response.body).to include('<p>Genre: Rock</p>')
+    end
+
+    it 'returns the second artist when id = 2' do
+      response = get('/artists/2')
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>ABBA</h1>')
+      expect(response.body).to include('<p>Genre: Pop</p>')
     end
   end
 end
