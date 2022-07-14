@@ -32,13 +32,13 @@ _Replace the below with your own design. Think of all the different possible res
     <h1>Albums</h1>
 
     <div>
-      Title: Doolittle
-      Released: 1989
+      <p>Title: <a href='/album/:1'>Doolittle</a><br />
+      Released: 1989</p>
     </div>
 
     <div>
-      Title: Surfer Rosa
-      Released: 1988
+      <p>Title: <a href='/album/:2'>Surfer Rosa</a><br />
+      Released: 1988</p>
     </div>
 
     <!-- ... -->
@@ -62,12 +62,13 @@ Response (200 OK):
 
     <h1>Albums</h1>
     <div>
-      Title: Doolittle
-      Released: 1989
+      <p>Title: <a href='/album/:1'>Doolittle</a><br />
+      Released: 1989</p>
     </div>
+
     <div>
-      Title: Surfer Rosa
-      Released: 1988
+      <p>Title: <a href='/album/:2'>Surfer Rosa</a><br />
+      Released: 1988</p>
     </div>
 ```
 
@@ -90,8 +91,9 @@ describe Application do
       response = get('/albums')
       expect(response.status).to eq(200)
       expect(response.body).to include('<h1>Albums</h1>')
-      expect(response.body).to include('<div>', 'Title: Doolittle', 'Released: 1989', '</div>')
-      expect(response.body).to include('<div>', 'Title: Surfer Rosa', 'Released: 1988', '</div>')
+      expect(response.body).to include("<div>", "</div>")
+      expect(response.body).to include("<p>Title: <a href='/albums/1'> Doolittle </a>")
+      expect(response.body).to include("<p>Title: <a href='/albums/2'> Surfer Rosa </a>")
     end
   end
 end

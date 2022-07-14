@@ -24,8 +24,9 @@ describe Application do
       response = get('/albums')
       expect(response.status).to eq(200)
       expect(response.body).to include('<h1>Albums</h1>')
-      expect(response.body).to include('<div>', 'Title: Doolittle', 'Released: 1989', '</div>')
-      expect(response.body).to include('<div>', 'Title: Surfer Rosa', 'Released: 1988', '</div>')
+      expect(response.body).to include("<div>", "</div>")
+      expect(response.body).to include("<p>Title: <a href='/albums/1'> Doolittle </a>")
+      expect(response.body).to include("<p>Title: <a href='/albums/2'> Surfer Rosa </a>")
     end
   end
 
