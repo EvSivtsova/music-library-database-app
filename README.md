@@ -1,6 +1,6 @@
 # Music library database app
 <div align="left">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/EvSivtsova/bank_tech_test">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/EvSivtsova/music-library-database-app">
 </div>
 <div>
   <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"/> 
