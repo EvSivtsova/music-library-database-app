@@ -1,6 +1,6 @@
 require "spec_helper"
 require "rack/test"
-require_relative '../../app'
+require_relative "../../app"
 
 def reset_tables
   seed_sql = File.read('spec/seeds/music_library.sql')

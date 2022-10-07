@@ -1,3 +1,3 @@
 # file: config.ru
-require './app'
+require "./app"
 run Application
