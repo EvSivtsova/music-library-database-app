@@ -5,6 +5,7 @@
 <div>
   <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"/> 
   <img src="https://img.shields.io/badge/Sinatra-black?style=for-the-badge&logo=Sinatra&logoColor=white" alt="Sinatra"/>
+  <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white"/>
   <img src="https://img.shields.io/badge/RSpec-blue?style=for-the-badge&logo=Rspec&logoColor=white" alt="Rspec"/>
   <img src="https://img.shields.io/badge/Test_coverage:_100-blue?style=for-the-badge&logo=Rspec&logoColor=white" alt="Rspec"/>
 </div><br>
@@ -14,7 +15,6 @@ This is a Makers' exercise from week 4 **Web applications**. In this module I le
 * Write integration tests for a web application
 * Implement web routes using a lightweight web framework (Sinatra)
 * Follow a debugging process for a web application
-* Deploy a web application using a light cloud service such as Heroku
 
 ## TechBit
 
@@ -48,4 +48,12 @@ createdb music_library
 psql -h 127.0.0.1 music_library < spec/seeds/music_library.sql
 rackup
 ```
-Go to `http://localhost:9292/:route`
+Go to `http://localhost:9292/:route` to explore the routes.
+
+<img src='https://github.com/EvSivtsova/music-library-database-app/blob/main/outputs/artists-route.png' width=300px>
+<img src='https://github.com/EvSivtsova/music-library-database-app/blob/main/outputs/new-album-route.png' width=300px>
+
+View more outputs [here](https://github.com/EvSivtsova/music-library-database-app/tree/main/outputs).
+
+
+<img src='https://github.com/EvSivtsova/music-library-database-app/blob/main/outputs/music-library-database-test-coverage.png'>
